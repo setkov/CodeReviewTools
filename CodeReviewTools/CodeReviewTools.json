@@ -1,0 +1,16 @@
+{
+	"tfs_instance": "http://tfs2017.compulink.local:8080/tfs",
+	"items_project": "IServ",
+	"code_projects": [
+		{
+			"project": "IServ.OmniUS_Heat",
+            "branches": [ "$/IServ.OmniUS_Heat/Main/Code/Client", "$/IServ.OmniUS_Heat/Main/Code/DB" ],
+            "reviewers": [ "COMPULINK\\s-setkov", "COMPULINK\\a-kitov", "COMPULINK\\m-baranov", "COMPULINK\\a-yakovlev", "COMPULINK\\o-turina" ]
+		},
+        {
+            "project": "IServ.OmniUS_SGK",
+            "branches": [ "$/IServ.OmniUS_SGK/Main/Code/Client", "$/IServ.OmniUS_SGK/Main/Code/DB" ],
+            "reviewers": [ "COMPULINK\\s-setkov", "COMPULINK\\a-kitov", "COMPULINK\\m-baranov", "COMPULINK\\a-yakovlev", "COMPULINK\\o-turina" ]
+        }
+	]
+}
