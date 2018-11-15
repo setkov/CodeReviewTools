@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CodeReviewTools", "CodeReviewTools\CodeReviewTools.pyproj", "{E6E11D27-8697-429A-8043-8134711608D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6E11D27-8697-429A-8043-8134711608D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E11D27-8697-429A-8043-8134711608D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {840A22F9-F083-4115-A5E5-BE8AECCC3BEC}
+	EndGlobalSection
+EndGlobal
