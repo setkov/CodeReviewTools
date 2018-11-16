@@ -14,10 +14,10 @@ class TfsApi():
         
         self.headers = {
             "Content-type": "application/json",
-            'Authorization': b'Basic ' + base64.b64encode(personal_access_token.encode('utf-8'))
+            "Authorization": b"Basic " + base64.b64encode(personal_access_token.encode("utf-8"))
         }
 
-        self.params = {'api-version': '1.0'}
+        self.params = {"api-version": "1.0"}
 
     def changesets(self, project, itemPath, fromDate):
         """ get changesets """
