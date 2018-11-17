@@ -36,8 +36,32 @@ class TfsApi():
         """ get code review item from changeset id """
 
         query = {"query": "SELECT [Id] FROM WorkItems WHERE [Work Item Type] = 'Code Review Request' AND [Associated Context] = '%s'" % changesetId}
-        responseId = requests.post(self.instance + "/DefaultCollection/" + project + "/_apis/wit/wiql", headers = self.headers, params = self.params, json = query)
-        if responseId.ok and len(responseId.json()["workItems"]) == 1:
-            responseRequest = requests.get(responseId.json()["workItems"][0]["url"], headers = self.headers, params = self.params)
-            if responseRequest.ok:
-                return responseRequest.json()
+        response = requests.post(self.instance + "/DefaultCollection/" + project + "/_apis/wit/wiql", headers = self.headers, params = self.params, json = query)
+        if response.ok and len(response.json()["workItems"]) == 1:
+            return response.json()
+
+    def workItem(self, project, url):
+        """ get work item by url """
+
+        response = requests.get(url, headers = self.headers, params = self.params)
+        if response.ok:
+            return response.json()
+
+    def workItem_add(self, project, workItemTypeName, fields):
+        """ add new work item; fields - list of dict {path: ..., value: ...} """
+
+        headers = copy.deepcopy(self.headers)
+        headers["Content-type"] = "application/json-patch+json"
+
+        body = []
+        for field in fields:
+            body.append({"op": "add", "path": field["path"], "value": field["value"]})
+
+        response = requests.patch(self.instance + "/DefaultCollection/" + project + "/_apis/wit/workitems/$" + workItemTypeName, headers = headers, params = self.params, json = body)
+        if response.ok:
+            return response.json()
+
+
+
+
+
