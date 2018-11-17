@@ -35,7 +35,9 @@ class TfsApi():
     def codeReviewRequest(self, project, changesetId):
         """ get code review item from changeset id """
 
-        query = {"query": "SELECT [Id], [Assigned To] FROM WorkItems WHERE [Work Item Type] = 'Code Review Request' AND [Associated Context] = " + changesetId}
-        response = requests.post(self.instance + "/DefaultCollection/" + project + "/_apis/wit/wiql", headers = self.headers, params = self.params, json = query)
-        if response.ok:
-            return response.json()
+        query = {"query": "SELECT [Id] FROM WorkItems WHERE [Work Item Type] = 'Code Review Request' AND [Associated Context] = '%s'" % changesetId}
+        responseId = requests.post(self.instance + "/DefaultCollection/" + project + "/_apis/wit/wiql", headers = self.headers, params = self.params, json = query)
+        if responseId.ok and len(responseId.json()["workItems"]) == 1:
+            responseRequest = requests.get(responseId.json()["workItems"][0]["url"], headers = self.headers, params = self.params)
+            if responseRequest.ok:
+                return responseRequest.json()
