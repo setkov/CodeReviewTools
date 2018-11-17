@@ -26,6 +26,7 @@ class TfsApi():
         params["searchCriteria.itemPath"] = itemPath
         params["searchCriteria.fromDate"] = fromDate
         params["$orderby"] = "id asc"
+        params["maxCommentLength"] = "2000"
 
         response = requests.get(self.instance + "/DefaultCollection/" + project + "/_apis/tfvc/changesets", headers = self.headers, params = params)
         if response.ok:
