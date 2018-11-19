@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>CodeReviewTools</Name>
     <RootNamespace>CodeReviewTools</RootNamespace>
+    <PublishUrl>c:\bin\PythonTools\CodeReviewTools</PublishUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

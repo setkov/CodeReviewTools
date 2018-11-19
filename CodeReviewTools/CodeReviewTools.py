@@ -1,5 +1,6 @@
 
 from TfsApi import TfsApi
+import datetime
 import json
 import logging
 import random
@@ -82,7 +83,8 @@ class CodeReviewTools():
 
 def main():
     tools = CodeReviewTools()
-    date = "2018-11-15"
+    # prev date
+    date = datetime.date.today() - datetime.timedelta(1)
     tools.addCodeReviews(date)
 
 if __name__ ==  "__main__":
