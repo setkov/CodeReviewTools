@@ -1,9 +1,8 @@
-
-from TfsApi import TfsApi
 import datetime
 import json
 import logging
 import random
+from TfsApi import TfsApi
 
 class CodeReviewTools():
 
@@ -50,6 +49,9 @@ class CodeReviewTools():
                         else:
  
                             requester = changeset["author"]["uniqueName"]
+                            if not requester in code_project["reviewers"]:
+                                requester = random.choice(code_project["reviewers"])
+
                             while True:
                                 reviewer = random.choice(code_project["reviewers"])
                                 if reviewer != requester:
@@ -66,7 +68,7 @@ class CodeReviewTools():
 
                             # add Code Review Request
                             fields = [areaPath, iterationPath, history, contextType, context, title, assignedTo]
-                            codeReviewRequest = self.tfs.workItem_add(items_project, "Code Review Request", fields)
+                            codeReviewRequest = self.tfs.workItem_add(items_project, "Code Review Request", fields, requester)
                             if not codeReviewRequest is None:
                                 logging.info("add code review request: %s, assigned to: %s", str(codeReviewRequest["id"]), requester)
 
@@ -77,7 +79,7 @@ class CodeReviewTools():
 
                                 # add Code Review Response
                                 fields = [areaPath, iterationPath, history, title, assignedTo, relations]
-                                codeReviewResponse = self.tfs.workItem_add(items_project, "Code Review Response", fields)
+                                codeReviewResponse = self.tfs.workItem_add(items_project, "Code Review Response", fields, requester)
                                 if not codeReviewResponse is None:
                                     logging.info("add code review response: %s, assigned to: %s", str(codeReviewResponse["id"]), reviewer)
 

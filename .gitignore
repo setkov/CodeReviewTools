@@ -260,5 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 
-# personal access token file
+# personal access token files
 TfsPat.txt
+TfsPat.json

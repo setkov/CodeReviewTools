@@ -1,0 +1,10 @@
+{
+	"tfs_api_token": "1234567890",
+	"requesters": {
+		"domain\\user1": "1234567890",
+		"domain\\user2": "1234567890",
+		"domain\\user3": "1234567890",
+		"domain\\user4": "1234567890",
+		"domain\\user5": "1234567890"
+	}
+}
