@@ -83,11 +83,20 @@ class CodeReviewTools():
                                 if not codeReviewResponse is None:
                                     logging.info("add code review response: %s, assigned to: %s", str(codeReviewResponse["id"]), reviewer)
 
+    def getCodeReviews(self):
+        items_project = self.config["items_project"]
+        code_projects = []
+        for code_project in self.config["code_projects"]:
+            code_projects.append(code_project["project"])
+        codeReviews = self.tfs.codeReviewRequests(items_project, code_projects)
+
 def main():
     tools = CodeReviewTools()
     # prev date
-    date = datetime.date.today() - datetime.timedelta(1)
-    tools.addCodeReviews(date)
+    # date = datetime.date.today() - datetime.timedelta(1)
+    # tools.addCodeReviews(date)
+
+    tools.getCodeReviews()
 
 if __name__ ==  "__main__":
     main()

@@ -48,7 +48,30 @@ class TfsApi():
         elif len(response.json()["workItems"]) == 1:
             return response.json()
 
-    def workItem(self, project, url):
+    def codeReviewRequests(self, project, teamProjects):
+        """ get unclosed code reviews from teamProjects list olded one day"""
+ 
+        query = {"query": "SELECT [Id] FROM WorkItems WHERE [System.TeamProject] IN ('" + "','".join(teamProjects) + "') AND [System.WorkItemType] IN ('Code Review Request','Code Review Response') AND [System.State] <> 'Closed' AND [System.CreatedDate] < @today-1 ORDER BY [Id]"}
+        response = requests.post(self.instance + "/DefaultCollection/" + project + "/_apis/wit/wiql", headers = self.headers, params = self.params, json = query)
+        if not response.ok:
+            logging.error(str(response.status_code) + " " + response.reason)
+        else:
+            codeReviews = dict()
+            for workItem in response.json()["workItems"]:
+                item = self.workItem(workItem["url"])
+                assignedTo = item["fields"]["System.AssignedTo"]
+                if not assignedTo in codeReviews:
+                    codeReviews[assignedTo] = []
+                codeReviews[assignedTo].append({"id": workItem["id"],
+                                                "createdDate": item["fields"]["System.CreatedDate"],
+                                                "workItemType": item["fields"]["System.WorkItemType"],
+                                                "title": item["fields"]["System.Title"],
+                                                "state": item["fields"]["System.State"],
+                                                "url": workItem["url"]
+                                                })
+            return codeReviews
+
+    def workItem(self, url):
         """ get work item by url """
 
         response = requests.get(url, headers = self.headers, params = self.params)

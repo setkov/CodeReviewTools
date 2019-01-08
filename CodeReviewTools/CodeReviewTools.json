@@ -4,7 +4,7 @@
 	"code_projects": [
 		{
 			"project": "IServ.OmniUS_Heat",
-            "branches": [ "$/IServ.OmniUS_Heat/Main/Code/Client", "$/IServ.OmniUS_Heat/Main/Code/DB" ],
+            "branches": [ "$/IServ.OmniUS_Heat/Main/Code/Client", "$/IServ.OmniUS_Heat/Main/Code/DB", "$/IServ.OmniUS_Heat/OmniUS_KES/Code/Client", "$/IServ.OmniUS_Heat/OmniUS_KES/Code/DB" ],
             "reviewers": [ "COMPULINK\\s-setkov", "COMPULINK\\a-kitov", "COMPULINK\\m-baranov", "COMPULINK\\a-yakovlev", "COMPULINK\\o-turina" ]
 		},
         {
